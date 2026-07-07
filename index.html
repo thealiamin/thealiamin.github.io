@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ali amin</title>
+<meta name="description" content="Ali Amin — (almost) lawyer, startup operator, building in public. London ⇄ Dubai.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f0f13;
+    --card: #1a1a21;
+    --card-hover: #21212b;
+    --text: #ececf1;
+    --muted: #9d9da9;
+    --accent: #ff8a3d;
+    --radius: 20px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Roboto', -apple-system, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cg stroke='%23ff8a3d' fill='none' stroke-width='1'%3E%3Cpath d='M0 12 L8 4 L16 12 L24 4 L32 12 L40 4 L48 12'/%3E%3Cpath d='M0 36 L8 44 L16 36 L24 44 L32 36 L40 44 L48 36'/%3E%3C/g%3E%3Cpath d='M24 20 L28 24 L24 28 L20 24 Z' fill='%23ff8a3d'/%3E%3C/svg%3E");
+    opacity: 0.05;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, black, transparent 55%);
+    mask-image: linear-gradient(to bottom, black, transparent 55%);
+  }
+  .strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+  .strip img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 18px; }
+
+  /* ---- hero ---- */
+  .hero { padding: 80px 0 40px; text-align: center; }
+  .photo, .photo-fallback {
+    width: 250px; height: 250px;
+    border-radius: 28px;
+    object-fit: cover;
+    box-shadow: 0 16px 50px rgba(0,0,0,0.5);
+    margin-bottom: 28px;
+  }
+  .photo-fallback {
+    display: none;
+    background: var(--card);
+    color: var(--accent);
+    font-size: 4rem; font-weight: 900;
+    text-align: center; line-height: 250px;
+    margin-left: auto; margin-right: auto;
+  }
+  h1 { font-size: clamp(2.6rem, 7vw, 3.6rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.05; }
+  h1 .dot { color: var(--accent); }
+  h1 .scrib { position: relative; display: inline-block; }
+  h1 .scrib svg { position: absolute; left: 2%; bottom: -12px; width: 96%; height: 12px; }
+  .id-lines { margin-top: 24px; display: inline-block; text-align: left; }
+  .id-lines div { font-size: 1.1rem; margin: 7px 0; color: #d8d8e0; }
+  .id-lines .e { display: inline-block; width: 34px; }
+  .icons { display: flex; gap: 18px; justify-content: center; margin-top: 22px; }
+  .icons a { color: var(--muted); transition: color 0.15s ease, transform 0.15s ease; }
+  .icons a:hover { color: var(--accent); transform: translateY(-2px); }
+  .icons svg { width: 23px; height: 23px; fill: currentColor; }
+  .video { display: block; width: 100%; aspect-ratio: 16/9; border: 0; border-radius: 18px; margin-top: 12px; }
+  .thread { margin: 32px 0 4px; font-size: 1.35rem; font-weight: 900; letter-spacing: -0.01em; text-align: center; }
+  .thread .scrib2 { position: relative; display: inline-block; }
+  .thread .scrib2 svg { position: absolute; left: 1%; bottom: -11px; width: 98%; height: 11px; }
+
+  /* ---- sections ---- */
+  section { padding: 34px 0; }
+  h2 { font-size: 1.5rem; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 18px; }
+  h2 span { color: var(--accent); }
+  .lead { color: var(--muted); margin: -10px 0 18px; font-size: 0.98rem; }
+
+  ul.points { list-style: none; }
+  ul.points li {
+    margin: 12px 0;
+    padding-left: 36px;
+    position: relative;
+    color: #d8d8e0;
+    font-size: 1.02rem;
+  }
+  ul.points li .e { position: absolute; left: 0; top: 0; }
+  ul.points li strong { color: var(--accent); font-weight: 700; }
+
+  /* ---- believe ---- */
+  .believe .b-item { margin: 16px 0; }
+  .believe .b-item h3 { font-size: 1.05rem; font-weight: 700; }
+  .believe .b-item p { color: var(--muted); font-size: 0.95rem; }
+
+  /* ---- cards (books / content) ---- */
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+  .card {
+    background: var(--card);
+    border-radius: var(--radius);
+    padding: 20px;
+    border: 1px solid rgba(255,255,255,0.05);
+    transition: transform 0.16s ease, background 0.16s ease;
+  }
+  .card:hover { transform: translateY(-3px); background: var(--card-hover); }
+  a.card { display: block; text-decoration: none; color: inherit; }
+  .morelink { margin-top: 18px; }
+  .morelink a { color: var(--accent); text-decoration: none; font-weight: 700; font-size: 0.98rem; }
+  .morelink a:hover { text-decoration: underline; }
+  .card .k { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+  .card h3 { font-size: 1rem; font-weight: 700; margin: 6px 0 4px; }
+  .card p { color: var(--muted); font-size: 0.88rem; }
+
+  /* ---- connect ---- */
+  .links { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    background: var(--card);
+    border: 1px solid rgba(255,255,255,0.07);
+    color: var(--text);
+    text-decoration: none;
+    padding: 13px 20px;
+    border-radius: 15px;
+    font-weight: 700; font-size: 0.95rem;
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .btn:hover { transform: translateY(-2px); border-color: var(--accent); }
+  .btn.primary { background: var(--accent); color: #17130e; border-color: var(--accent); }
+  .btn svg { width: 17px; height: 17px; fill: currentColor; }
+
+  footer { padding: 50px 0 40px; color: var(--muted); font-size: 0.88rem; text-align: center; }
+
+  @media (max-width: 560px) {
+    .hero { padding-top: 52px; }
+    .photo, .photo-fallback { width: 200px; height: 200px; }
+    .photo-fallback { line-height: 200px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- hero -->
+  <div class="hero">
+    <img class="photo" src="ali.jpg" alt="Ali Amin" onerror="this.style.display='none';document.querySelector('.photo-fallback').style.display='block';">
+    <div class="photo-fallback">AA</div>
+    <h1><span class="scrib">ali amin<span class="dot">.</span><svg viewBox="0 0 200 12" preserveAspectRatio="none"><path d="M4 8 Q 60 3, 110 7 T 196 5" stroke="#ff8a3d" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.85"/></svg></span></h1>
+    <div class="id-lines">
+      <div><span class="e">⚖️</span>(almost) lawyer. LSE law grad who ran off to startups</div>
+      <div><span class="e">🛠️</span>operator. legal, strategy &amp; ops for early stage teams</div>
+      <div><span class="e">🧠</span>obsessed with how brains work (mine runs on ADHD)</div>
+      <div><span class="e">🌍</span>london ⇄ dubai</div>
+    </div>
+    <div class="icons">
+      <a href="#" onclick="location.href='mailto:'+['ali','alumni.lse.ac.uk'].join('@');return false" aria-label="LSE alumni email"><svg viewBox="0 0 56 56"><rect x="1.5" y="1.5" width="53" height="53" rx="9" fill="none" stroke="currentColor" stroke-width="3"/><path d="M10.55 10.857h3.684V41.44h5.447v3.794H10.55V10.857zm25.654 0h9.291v3.749h-5.629v11.04h5.263v4h-5.263V41.44h5.629v3.794h-9.291V10.857zM22.885 45.234v-3.771h1.144c1.511 0 4.074-1.052 4.463-3.429.366-2.308.091-3.977-2.884-9.051l-.023-.069c-2.059-3.36-4.027-6.308-3.295-10.925a8.066 8.066 0 012.75-5.179 8.085 8.085 0 015.534-1.953h1.144v3.749h-1.144c-1.51 0-4.142 1.051-4.531 3.428-.366 2.286-.114 3.795 2.769 8.8l.092.115c2.151 3.451 4.073 6.514 3.341 11.108a8.018 8.018 0 01-2.693 5.211 8.04 8.04 0 01-5.523 1.989h-1.144"/></svg></a>
+      <a href="https://www.linkedin.com/in/ali-amin/" target="_blank" rel="noopener" aria-label="linkedin"><svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg></a>
+      <a href="https://www.instagram.com/thealiamin/" target="_blank" rel="noopener" aria-label="instagram"><svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg></a>
+      <a href="#" onclick="location.href='mailto:'+['hi','aliamin.org'].join('@');return false" aria-label="email"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5v2.24z"/></svg></a>
+      <a href="https://youtu.be/7FCC3xG3Suw" target="_blank" rel="noopener" aria-label="youtube"><svg viewBox="0 0 24 24"><path d="M10 15l5.19-3L10 9v6m11.56-7.83c.13.47.22 1.1.28 1.9.07.8.1 1.49.1 2.09L22 12c0 2.19-.16 3.8-.44 4.83-.25.9-.83 1.48-1.73 1.73-.47.13-1.33.22-2.65.28-1.3.07-2.49.1-3.59.1L12 19c-4.19 0-6.8-.16-7.83-.44-.9-.25-1.48-.83-1.73-1.73-.13-.47-.22-1.1-.28-1.9-.07-.8-.1-1.49-.1-2.09L2 12c0-2.19.16-3.8.44-4.83.25-.9.83-1.48 1.73-1.73.47-.13 1.33-.22 2.65-.28 1.3-.07 2.49-.1 3.59-.1L12 5c4.19 0 6.8.16 7.83.44.9.25 1.48.83 1.73 1.73z"/></svg></a>
+    </div>
+  </div>
+
+  <!-- proof -->
+  <section id="story">
+    <h2>some things i've done<span>.</span></h2>
+    <ul class="points">
+      <li><span class="e">🚪</span>three years and crippling debt for an LSE law degree. walking away from lucrative training contracts because <strong>startups had better problems</strong></li>
+      <li><span class="e">🏠</span>first legal hire at a <strong>vc backed proptech</strong> taking on london's housing crisis. 350 affordable homes on rooftops. <strong>£28m+ in funding</strong> managed. commended by the Greater London Authority</li>
+      <li><span class="e">🤝</span><strong>LSE Generate ambassador</strong>, dubai &amp; the gcc. talks on venture capital and crypto. supporting 300+ alumni founders</li>
+      <li><span class="e">🏜️</span>legal &amp; ops director at a dubai trading group. contracts and suppliers across multiple jurisdictions. <strong>the deals close and the disputes don't reach court</strong></li>
+    </ul>
+    <p class="thread"><span class="scrib2">i like being where things get built.<svg viewBox="0 0 200 10" preserveAspectRatio="none"><path d="M3 7 Q 55 2, 105 6 T 197 4" stroke="#ff8a3d" stroke-width="3" fill="none" stroke-linecap="round"/></svg></span></p>
+  </section>
+
+  <!-- now -->
+  <section id="now">
+    <h2>right now<span>.</span></h2>
+    <ul class="points">
+      <li><span class="e">🚧</span><strong>building in public</strong>. this site is step one</li>
+      <li><span class="e">🧠</span>building <strong>naf.si</strong>. adhd support through a middle eastern lens. early days</li>
+      <li><span class="e">🔬</span>a new <strong>obsession</strong> most weeks. i write up the rabbit holes so you don't have to</li>
+      <li><span class="e">🚀</span>the <strong>uk ⇄ gulf startup corridor</strong>. a foot in both worlds</li>
+      <li><span class="e">🎾</span>padel, tennis, badminton. if it has a racket, i'm in</li>
+      <li><span class="e">⛰️</span>hiking the hajar mountains &amp; drinking too much karak</li>
+    </ul>
+    <p class="morelink"><a href="obsessions.html">→ current obsessions</a></p>
+  </section>
+
+  <!-- in the wild -->
+  <section id="wild">
+    <h2>in the wild<span>.</span></h2>
+    <div class="strip">
+      <img src="talk.jpg" alt="interviewing a VC at an LSE Generate event" onerror="this.remove()">
+      <img src="generate.jpg" alt="at the LSE Generate dubai launch" onerror="this.remove()">
+      <img src="balloons.jpg" alt="cappadocia at sunrise" onerror="this.remove()">
+    </div>
+    <iframe class="video" src="https://www.youtube.com/embed/7FCC3xG3Suw" title="Breaking Into The World of Startups with Ali Amin" allowfullscreen></iframe>
+  </section>
+
+  <!-- believe -->
+  <section id="believe" class="believe">
+    <h2>things i believe<span>.</span></h2>
+    <div class="b-item">
+      <h3>🙋 be a resource</h3>
+      <p>offer help. connect people. overdeliver.</p>
+    </div>
+    <div class="b-item">
+      <h3>🛠️ be resourceful</h3>
+      <p>be scrappy. take initiative. find a way. david in a world of goliaths.</p>
+    </div>
+    <div class="b-item">
+      <h3>🎛️ optimise for growth</h3>
+      <p>potential over credentials. aptitude over pedigree. learn to learn and you're set for life.</p>
+    </div>
+    <div class="b-item">
+      <h3>🌱 build for purpose</h3>
+      <p>the best businesses solve urgent human problems. i'd rather create value than just chase the paycheck.</p>
+    </div>
+    <div class="b-item">
+      <h3>🔮 think long term</h3>
+      <p>you can't build a long-term future on short-term thinking. invest in relationships.</p>
+    </div>
+    <div class="b-item">
+      <h3>🍾 enjoy the journey</h3>
+      <p>life is short. ask questions, break rules, love what you do. don't grip the destination too tightly.</p>
+    </div>
+  </section>
+
+  <!-- favourites -->
+  <section id="favourites">
+    <h2>stuff i love<span>.</span></h2>
+    <p class="lead">books &amp; creators that rewired how i think. always evolving.</p>
+    <div class="grid">
+      <a class="card" href="https://www.navalmanack.com/" target="_blank" rel="noopener">
+        <div class="k">book</div>
+        <h3>The Almanack of Naval Ravikant</h3>
+        <p>learn to sell. learn to build. if you can do both, you'll be unstoppable.</p>
+      </a>
+      <a class="card" href="https://www.goodreads.com/book/show/50892190-adhd-2-0" target="_blank" rel="noopener">
+        <div class="k">book</div>
+        <h3>ADHD 2.0 — Hallowell &amp; Ratey</h3>
+        <p>the book that reframed my brain as a race car, not a broken engine.</p>
+      </a>
+      <a class="card" href="https://austinkleon.com/show-your-work/" target="_blank" rel="noopener">
+        <div class="k">book</div>
+        <h3>Show Your Work — Austin Kleon</h3>
+        <p>the case for building in public before you feel ready.</p>
+      </a>
+      <a class="card" href="https://www.youtube.com/@Taskmaster" target="_blank" rel="noopener">
+        <div class="k">tv</div>
+        <h3>Taskmaster &amp; Better Call Saul</h3>
+        <p>lateral thinking as entertainment. jimmy would've made a great founder.</p>
+      </a>
+      <a class="card" href="https://aliabdaal.com" target="_blank" rel="noopener">
+        <div class="k">youtube</div>
+        <h3>Ali Abdaal</h3>
+        <p>feel good productivity. proof you can build a life around curiosity.</p>
+      </a>
+      <a class="card" href="https://farza.com" target="_blank" rel="noopener">
+        <div class="k">human</div>
+        <h3>farza</h3>
+        <p>builder energy in its purest form. an inspiration for this whole site.</p>
+      </a>
+    </div>
+    <p class="morelink"><a href="library.html">→ see the full library</a></p>
+  </section>
+
+  <!-- connect -->
+  <section id="connect">
+    <h2>say hi<span>.</span></h2>
+    <p class="lead">always happy to chat. startups, ideas, or anything at the odd intersection of law and building things.</p>
+    <div class="links">
+      <a class="btn primary" href="#" onclick="location.href='mailto:'+['hi','aliamin.org'].join('@');return false">
+        <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4.24-8 5-8-5V6l8 5 8-5v2.24z"/></svg>
+        let's get a karak ☕
+      </a>
+      <a class="btn" href="https://www.linkedin.com/in/ali-amin/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/></svg>
+        linkedin
+      </a>
+      <a class="btn" href="https://www.instagram.com/thealiamin/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/></svg>
+        instagram
+      </a>
+    </div>
+  </section>
+
+  <footer>© 2026 ali amin · v1, built in public<br>and yes, everything is orange on purpose. favourite colour.</footer>
+
+</div>
+</body>
+</html>
