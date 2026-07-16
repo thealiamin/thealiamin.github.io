@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ali amin</title>
 <meta name="description" content="Ali Amin — (almost) lawyer, startup operator, building in public. London ⇄ Dubai.">
+<meta name="robots" content="noimageindex">
+<meta name="ai" content="noai, noimageai">
+<meta name="robots" content="noai, noimageai">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
@@ -90,10 +93,13 @@
   ul.points li .e { position: absolute; left: 0; top: 0; }
   ul.points li strong { color: var(--accent); font-weight: 700; }
 
-  /* ---- believe ---- */
-  .believe .b-item { margin: 16px 0; }
-  .believe .b-item h3 { font-size: 1.05rem; font-weight: 700; }
-  .believe .b-item p { color: var(--muted); font-size: 0.95rem; }
+  /* ---- believe (boxes) ---- */
+  .believe .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
+
+  /* ---- loves (easy-edit list) ---- */
+  ul.points li a { color: var(--text); font-weight: 700; text-decoration: none; border-bottom: 1px solid rgba(255,138,61,0.4); }
+  ul.points li a:hover { color: var(--accent); }
+  ul.points li .why { color: var(--muted); font-size: 0.92rem; }
 
   /* ---- cards (books / content) ---- */
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 14px; }
@@ -137,7 +143,15 @@
     .photo, .photo-fallback { width: 200px; height: 200px; }
     .photo-fallback { line-height: 200px; }
   }
+
+  /* image copy deterrents (casual protection only) */
+  img { -webkit-user-select: none; user-select: none; -webkit-user-drag: none; -webkit-touch-callout: none; }
 </style>
+<script>
+  // deter right-click / long-press save on images (screenshots can't be stopped)
+  document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+  document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+</script>
 </head>
 <body>
 <div class="wrap">
@@ -152,6 +166,7 @@
       <div><span class="e">🛠️</span>operator. legal, strategy &amp; ops for early stage teams</div>
       <div><span class="e">🧠</span>obsessed with how brains work (mine runs on ADHD)</div>
       <div><span class="e">🌍</span>london ⇄ dubai</div>
+      <div><span class="e">📬</span><strong style="color:var(--accent)">open to legal, ops &amp; strategy roles</strong> with early stage teams — <a href="#connect" style="color:var(--accent)">say hi</a></div>
     </div>
     <div class="icons">
       <a href="#" onclick="location.href='mailto:'+['ali','alumni.lse.ac.uk'].join('@');return false" aria-label="LSE alumni email"><svg viewBox="0 0 56 56"><rect x="1.5" y="1.5" width="53" height="53" rx="9" fill="none" stroke="currentColor" stroke-width="3"/><path d="M10.55 10.857h3.684V41.44h5.447v3.794H10.55V10.857zm25.654 0h9.291v3.749h-5.629v11.04h5.263v4h-5.263V41.44h5.629v3.794h-9.291V10.857zM22.885 45.234v-3.771h1.144c1.511 0 4.074-1.052 4.463-3.429.366-2.308.091-3.977-2.884-9.051l-.023-.069c-2.059-3.36-4.027-6.308-3.295-10.925a8.066 8.066 0 012.75-5.179 8.085 8.085 0 015.534-1.953h1.144v3.749h-1.144c-1.51 0-4.142 1.051-4.531 3.428-.366 2.286-.114 3.795 2.769 8.8l.092.115c2.151 3.451 4.073 6.514 3.341 11.108a8.018 8.018 0 01-2.693 5.211 8.04 8.04 0 01-5.523 1.989h-1.144"/></svg></a>
@@ -202,29 +217,35 @@
   <!-- believe -->
   <section id="believe" class="believe">
     <h2>things i believe<span>.</span></h2>
-    <div class="b-item">
-      <h3>🙋 be a resource</h3>
-      <p>offer help. connect people. overdeliver.</p>
-    </div>
-    <div class="b-item">
-      <h3>🛠️ be resourceful</h3>
-      <p>be scrappy. take initiative. find a way. david in a world of goliaths.</p>
-    </div>
-    <div class="b-item">
-      <h3>🎛️ optimise for growth</h3>
-      <p>potential over credentials. aptitude over pedigree. learn to learn and you're set for life.</p>
-    </div>
-    <div class="b-item">
-      <h3>🌱 build for purpose</h3>
-      <p>the best businesses solve urgent human problems. i'd rather create value than just chase the paycheck.</p>
-    </div>
-    <div class="b-item">
-      <h3>🔮 think long term</h3>
-      <p>you can't build a long-term future on short-term thinking. invest in relationships.</p>
-    </div>
-    <div class="b-item">
-      <h3>🍾 enjoy the journey</h3>
-      <p>life is short. ask questions, break rules, love what you do. don't grip the destination too tightly.</p>
+    <!-- ============================================================
+         HOW TO ADD A VALUE: copy one whole <div class="card"> block,
+         paste it inside the grid, change the emoji, title and text.
+         ============================================================ -->
+    <div class="grid">
+      <div class="card">
+        <h3>🙋 be a resource</h3>
+        <p>offer help. connect people. overdeliver.</p>
+      </div>
+      <div class="card">
+        <h3>🛠️ be resourceful</h3>
+        <p>be scrappy. take initiative. find a way. david in a world of goliaths.</p>
+      </div>
+      <div class="card">
+        <h3>🎛️ optimise for growth</h3>
+        <p>potential over credentials. aptitude over pedigree. learn to learn and you're set for life.</p>
+      </div>
+      <div class="card">
+        <h3>🌱 build for purpose</h3>
+        <p>the best businesses solve urgent human problems. i'd rather create value than just chase the paycheck.</p>
+      </div>
+      <div class="card">
+        <h3>🔮 think long term</h3>
+        <p>you can't build a long-term future on short-term thinking. invest in relationships.</p>
+      </div>
+      <div class="card">
+        <h3>🍾 enjoy the journey</h3>
+        <p>life is short. ask questions, break rules, love what you do. don't grip the destination too tightly.</p>
+      </div>
     </div>
   </section>
 
@@ -232,38 +253,19 @@
   <section id="favourites">
     <h2>stuff i love<span>.</span></h2>
     <p class="lead">books &amp; creators that rewired how i think. always evolving.</p>
-    <div class="grid">
-      <a class="card" href="https://www.navalmanack.com/" target="_blank" rel="noopener">
-        <div class="k">book</div>
-        <h3>The Almanack of Naval Ravikant</h3>
-        <p>learn to sell. learn to build. if you can do both, you'll be unstoppable.</p>
-      </a>
-      <a class="card" href="https://www.goodreads.com/book/show/50892190-adhd-2-0" target="_blank" rel="noopener">
-        <div class="k">book</div>
-        <h3>ADHD 2.0 — Hallowell &amp; Ratey</h3>
-        <p>the book that reframed my brain as a race car, not a broken engine.</p>
-      </a>
-      <a class="card" href="https://austinkleon.com/show-your-work/" target="_blank" rel="noopener">
-        <div class="k">book</div>
-        <h3>Show Your Work — Austin Kleon</h3>
-        <p>the case for building in public before you feel ready.</p>
-      </a>
-      <a class="card" href="https://www.youtube.com/@Taskmaster" target="_blank" rel="noopener">
-        <div class="k">tv</div>
-        <h3>Taskmaster &amp; Better Call Saul</h3>
-        <p>lateral thinking as entertainment. jimmy would've made a great founder.</p>
-      </a>
-      <a class="card" href="https://aliabdaal.com" target="_blank" rel="noopener">
-        <div class="k">youtube</div>
-        <h3>Ali Abdaal</h3>
-        <p>feel good productivity. proof you can build a life around curiosity.</p>
-      </a>
-      <a class="card" href="https://farza.com" target="_blank" rel="noopener">
-        <div class="k">human</div>
-        <h3>farza</h3>
-        <p>builder energy in its purest form. an inspiration for this whole site.</p>
-      </a>
-    </div>
+    <!-- ============================================================
+         HOW TO ADD SOMETHING YOU LOVE: copy one whole <li> ... </li>
+         block, paste it anywhere in the list, and change the emoji,
+         link, title and description. that's it.
+         ============================================================ -->
+    <ul class="points">
+      <li><span class="e">📙</span><a href="https://www.navalmanack.com/" target="_blank" rel="noopener">The Almanack of Naval Ravikant</a><br><span class="why">learn to sell. learn to build. if you can do both, you'll be unstoppable.</span></li>
+      <li><span class="e">📙</span><a href="https://www.goodreads.com/book/show/50892190-adhd-2-0" target="_blank" rel="noopener">ADHD 2.0 — Hallowell &amp; Ratey</a><br><span class="why">the book that reframed my brain as a race car, not a broken engine.</span></li>
+      <li><span class="e">📙</span><a href="https://austinkleon.com/show-your-work/" target="_blank" rel="noopener">Show Your Work — Austin Kleon</a><br><span class="why">the case for building in public before you feel ready.</span></li>
+      <li><span class="e">📺</span><a href="https://www.youtube.com/@Taskmaster" target="_blank" rel="noopener">Taskmaster &amp; Better Call Saul</a><br><span class="why">lateral thinking as entertainment. jimmy would've made a great founder.</span></li>
+      <li><span class="e">🎬</span><a href="https://aliabdaal.com" target="_blank" rel="noopener">Ali Abdaal</a><br><span class="why">feel good productivity. proof you can build a life around curiosity.</span></li>
+      <li><span class="e">🛠️</span><a href="https://farza.com" target="_blank" rel="noopener">farza</a><br><span class="why">builder energy in its purest form. an inspiration for this whole site.</span></li>
+    </ul>
     <p class="morelink"><a href="library.html">→ see the full library</a></p>
   </section>
 
@@ -287,7 +289,7 @@
     </div>
   </section>
 
-  <footer>© 2026 ali amin · v1, built in public<br>and yes, everything is orange on purpose. favourite colour.</footer>
+  <footer>© 2026 ali amin · v2, built in public<br>and yes, everything is orange on purpose. favourite colour.</footer>
 
 </div>
 </body>
